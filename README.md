@@ -40,4 +40,6 @@ npm run preview
 - Tailwind CSS
 - shadcn-ui
 
+**Sitio publicado en:** https://juannppgd.github.io/fisiopao-tu-bienestar-en-casa/
+
 Si necesitas que agregue más información al README (por ejemplo, un logo o enlaces de contacto), dímelo y lo actualizo.
