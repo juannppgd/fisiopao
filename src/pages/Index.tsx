@@ -31,7 +31,13 @@ const Index = () => {
         />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="es_CO" />
+        <meta property="og:url" content="https://fisiopao.com" />
+        <meta property="og:image" content="https://fisiopao.com/og-image-fisiopao.svg" />
+        <meta property="og:image:alt" content="Fisiopao - Fisioterapia domiciliaria en Tunja" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://fisiopao.com/og-image-fisiopao.svg" />
         <link rel="canonical" href="https://fisiopao.com" />
+        <link rel="alternate" href="https://fisiopao.com/" hrefLang="es-CO" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",

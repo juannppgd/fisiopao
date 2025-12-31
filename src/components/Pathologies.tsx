@@ -20,7 +20,7 @@ const pathologyCategories = [
   {
     icon: Activity,
     title: "Osteomusculares",
-    color: "secondary",
+    color: "primary",
     conditions: [
       "Dolor lumbar",
       "Dolor cervical",
@@ -35,7 +35,7 @@ const pathologyCategories = [
   {
     icon: Brain,
     title: "Neurológicas",
-    color: "accent",
+    color: "primary",
     conditions: [
       "Accidente cerebrovascular (ACV)",
       "Enfermedad de Parkinson",

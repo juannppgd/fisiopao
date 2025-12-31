@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const navItems = [
   { label: "Inicio", href: "#inicio" },
@@ -48,7 +49,7 @@ export const Header = () => {
             e.preventDefault();
             scrollToSection("#inicio");
           }}
-          className="font-heading text-2xl md:text-3xl font-bold text-primary hover:text-primary/80 transition-colors"
+          className="font-heading text-2xl md:text-3xl font-bold text-primary"
         >
           Fisiopao
         </a>
@@ -63,15 +64,16 @@ export const Header = () => {
                 e.preventDefault();
                 scrollToSection(item.href);
               }}
-              className="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors rounded-lg hover:bg-accent/50"
+              className="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-black transition-colors rounded-lg hover:[text-shadow:0_0_4px_rgba(0,0,0,0.15)] dark:hover:text-white dark:hover:[text-shadow:0_0_6px_rgba(255,255,255,0.75)]"
             >
               {item.label}
             </a>
           ))}
         </nav>
 
-        {/* CTA Button */}
+        {/* CTA Button + Theme Toggle */}
         <div className="hidden md:flex items-center gap-3">
+          <ThemeToggle />
           <Button
             variant="hero"
             size="default"
@@ -86,20 +88,20 @@ export const Header = () => {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="lg:hidden p-2 rounded-lg hover:bg-accent/50 transition-colors"
+          className="group lg:hidden p-2 rounded-lg transition-colors dark:group-hover:text-white"
           aria-label="Toggle menu"
         >
           {isMobileMenuOpen ? (
-            <X className="w-6 h-6 text-foreground" />
+            <X className="w-6 h-6 text-foreground group-hover:text-white dark:group-hover:text-white" />
           ) : (
-            <Menu className="w-6 h-6 text-foreground" />
+            <Menu className="w-6 h-6 text-foreground group-hover:text-white dark:group-hover:text-white" />
           )}
         </button>
       </div>
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 right-0 bg-background/98 backdrop-blur-md border-b border-border shadow-elevated animate-fade-in">
+        <div className="lg:hidden absolute top-full left-0 right-0 bg-background border-b border-border shadow-elevated animate-fade-in">
           <nav className="flex flex-col p-4">
             {navItems.map((item) => (
               <a
@@ -109,11 +111,12 @@ export const Header = () => {
                   e.preventDefault();
                   scrollToSection(item.href);
                 }}
-                className="px-4 py-3 text-base font-medium text-foreground/80 hover:text-primary hover:bg-accent/50 rounded-lg transition-colors"
+                className="px-4 py-3 text-base font-medium text-foreground/80 hover:text-black transition-colors rounded-lg hover:[text-shadow:0_0_4px_rgba(0,0,0,0.15)] dark:hover:text-white dark:hover:[text-shadow:0_0_6px_rgba(255,255,255,0.75)]"
               >
                 {item.label}
               </a>
             ))}
+            <ThemeToggle />
             <Button
               variant="hero"
               size="lg"

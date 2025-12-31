@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import {
   Accordion,
   AccordionContent,
@@ -34,7 +35,22 @@ const faqs = [
 
 export const FAQ = () => {
   return (
-    <section id="faq" className="section-padding bg-background">
+    <>
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map((faq) => ({
+            "@type": "Question",
+            name: faq.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: faq.answer,
+            },
+          })),
+        })}</script>
+      </Helmet>
+      <section id="faq" className="section-padding bg-background">
       <div className="container-custom">
         <div className="max-w-4xl mx-auto">
           {/* Section Header */}
@@ -86,5 +102,6 @@ export const FAQ = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };

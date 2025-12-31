@@ -57,7 +57,7 @@ export const Services = () => {
                 key={index}
                 className="group p-6 bg-card rounded-2xl border border-border hover:border-primary/30 hover:shadow-card transition-all duration-300 card-hover"
               >
-                <div className="w-12 h-12 mb-4 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                <div className="w-12 h-12 mb-4 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary-light group-hover:scale-110 transition-all duration-300">
                   <service.icon className="w-6 h-6 text-primary group-hover:text-primary-foreground transition-colors" />
                 </div>
                 <h4 className="font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">

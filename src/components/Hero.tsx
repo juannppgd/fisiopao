@@ -21,6 +21,9 @@ export const Hero = () => {
           src={heroImage}
           alt="Fisioterapia domiciliaria profesional en Tunja"
           className="w-full h-full object-cover"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/40" />
       </div>

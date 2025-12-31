@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+/* Fonts loaded in index.html for better performance (preconnect + stylesheet) */
 
 @tailwind base;
 @tailwind components;
@@ -6,107 +6,120 @@
 
 @layer base {
   :root {
-    --background: 180 20% 99%;
-    --foreground: 200 25% 15%;
+    /* “Usar la paleta cromática basada en el logo de Fisiopao. Mantener coherencia entre modo claro y oscuro, respetando tonos azul clínico, verde–azulado y acento aguamarina. Priorizar legibilidad, contraste AA/AAA y estética médica profesional.” */
+
+    --background: 0 0% 100%; /* #FFFFFF */
+    --foreground: 212 75% 25%; /* #0F3B6F */
 
     --card: 0 0% 100%;
-    --card-foreground: 200 25% 15%;
+    --card-foreground: 212 14% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 200 25% 15%;
+    --popover-foreground: 212 14% 12%;
 
-    --primary: 168 76% 42%;
+    --primary: 212 75% 25%; /* Azul principal #0F3B6F */
     --primary-foreground: 0 0% 100%;
-    --primary-light: 168 60% 95%;
+    --primary-light: 183 57% 42%; /* Hover / verde-azulado #2FA4A9 */
 
-    --secondary: 15 85% 65%;
+    --secondary: 198 43% 73%; /* Azul secundario #9EC7D8 */
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 180 15% 95%;
-    --muted-foreground: 200 10% 45%;
+    --muted: 200 80% 97%; /* Cards / secciones #F4F9FB */
+    --muted-foreground: 208 29% 41%; /* Texto secundario #4A6A85 */
 
-    --accent: 168 50% 90%;
-    --accent-foreground: 168 76% 30%;
+    --accent: 177 71% 42%; /* Aguamarina #1FB6AE */
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 180 20% 90%;
-    --input: 180 20% 90%;
-    --ring: 168 76% 42%;
+    --border: 200 20% 95%;
+    --input: 200 20% 95%;
+    --ring: 212 75% 25%;
 
     --radius: 0.75rem;
 
     /* Custom design tokens */
-    --gradient-hero: linear-gradient(135deg, hsl(168, 76%, 42%) 0%, hsl(180, 60%, 35%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(180, 20%, 99%) 0%, hsl(180, 15%, 97%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0, 0%, 100%) 0%, hsl(180, 20%, 98%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(183 57% 42%) 0%, hsl(227 39% 58%) 100%); /* #2FA4A9 -> #6A7DBD */
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(200 80% 97%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(200 80% 97%) 100%);
     
-    --shadow-soft: 0 4px 20px -4px hsl(200 25% 15% / 0.08);
-    --shadow-card: 0 8px 30px -8px hsl(200 25% 15% / 0.12);
-    --shadow-elevated: 0 20px 50px -15px hsl(200 25% 15% / 0.15);
-    --shadow-glow: 0 0 40px hsl(168 76% 42% / 0.2);
+    --shadow-soft: 0 4px 20px -4px hsl(212 14% 12% / 0.08);
+    --shadow-card: 0 8px 30px -8px hsl(212 14% 12% / 0.12);
+    --shadow-elevated: 0 20px 50px -15px hsl(212 14% 12% / 0.15);
+    --shadow-glow: 0 0 40px hsl(212 75% 25% / 0.2);
 
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Inter', sans-serif;
 
     --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-foreground: 212 14% 12%;
+    --sidebar-primary: 212 75% 25%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 200 80% 97%;
+    --sidebar-accent-foreground: 212 14% 12%;
+    --sidebar-border: 212 10% 95%;
+    --sidebar-ring: 212 75% 35%;
+
+    /* Scrollbar tokens (used for embedded widgets like Calendly) */
+    --scrollbar-track: hsl(var(--muted));
+    --scrollbar-thumb: hsl(var(--primary));
+    --scrollbar-thumb-hover: hsl(var(--primary-light));
   }
 
   .dark {
-    --background: 200 25% 8%;
-    --foreground: 180 15% 95%;
+    /* “Usar la paleta cromática basada en el logo de Fisiopao. Mantener coherencia entre modo claro y oscuro, respetando tonos azul clínico, verde–azulado y acento aguamarina. Priorizar legibilidad, contraste AA/AAA y estética médica profesional.” */
 
-    --card: 200 20% 12%;
-    --card-foreground: 180 15% 95%;
+    --scrollbar-track: hsl(var(--card));
+    --scrollbar-thumb: hsl(var(--primary));
+    --scrollbar-thumb-hover: hsl(var(--primary-light));
 
-    --popover: 200 20% 12%;
-    --popover-foreground: 180 15% 95%;
+    --background: 207 61% 11%; /* #0B1E2D */
+    --foreground: 200 48% 95%; /* #EAF4F8 */
 
-    --primary: 168 70% 50%;
-    --primary-foreground: 200 25% 8%;
-    --primary-light: 168 50% 15%;
+    --card: 206 61% 17%; /* #112F46 */
+    --card-foreground: 200 48% 95%;
 
-    --secondary: 15 75% 55%;
+    --popover: 206 61% 17%;
+    --popover-foreground: 200 48% 95%;
+
+    --primary: 183 57% 42%; /* #2FA4A9 (botones primarios en oscuro) */
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 227 39% 58%; /* #6A7DBD hover */
+
+    --secondary: 198 43% 73%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 200 15% 18%;
-    --muted-foreground: 180 10% 60%;
+    --muted: 206 61% 17%;
+    --muted-foreground: 198 43% 73%;
 
-    --accent: 168 40% 20%;
-    --accent-foreground: 168 70% 70%;
+    --accent: 177 71% 42%; /* Aguamarina #1FB6AE */
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 200 15% 20%;
-    --input: 200 15% 20%;
-    --ring: 168 70% 50%;
+    --border: 206 61% 17%;
+    --input: 206 61% 17%;
+    --ring: 183 57% 42%;
 
-    --gradient-hero: linear-gradient(135deg, hsl(168, 70%, 50%) 0%, hsl(180, 50%, 40%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(200, 25%, 8%) 0%, hsl(200, 20%, 10%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(200, 20%, 12%) 0%, hsl(200, 18%, 14%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(183 57% 42%) 0%, hsl(227 39% 58%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(207 61% 11%) 0%, hsl(206 61% 17%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(206 61% 17%) 0%, hsl(206 55% 20%) 100%);
 
     --shadow-soft: 0 4px 20px -4px hsl(0 0% 0% / 0.3);
     --shadow-card: 0 8px 30px -8px hsl(0 0% 0% / 0.4);
     --shadow-elevated: 0 20px 50px -15px hsl(0 0% 0% / 0.5);
-    --shadow-glow: 0 0 40px hsl(168 70% 50% / 0.25);
+    --shadow-glow: 0 0 40px hsl(183 57% 42% / 0.25);
 
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-background: 206 61% 17%;
+    --sidebar-foreground: 200 48% 95%;
+    --sidebar-primary: 183 57% 42%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 206 61% 17%;
+    --sidebar-accent-foreground: 200 48% 95%;
+    --sidebar-border: 206 61% 17%;
+    --sidebar-ring: 227 39% 58%;
   }
 }
 
@@ -120,7 +133,7 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground transition-colors duration-200;
     font-family: var(--font-body);
   }
 
@@ -154,6 +167,79 @@
 
   .glass-effect {
     @apply backdrop-blur-md bg-background/80 border border-border/50;
+  }
+
+  /* Calendly container custom scrollbar that adapts to light/dark using design tokens */
+  .calendly-container {
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  }
+  .calendly-container::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  .calendly-container::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+    border-radius: 999px;
+  }
+  .calendly-container::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  .calendly-container::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+  }
+
+  /* Attempt to style the scrollbar inside the Calendly iframe (may be limited by cross-origin policies).
+     These rules improve appearance on browsers that honor iframe pseudo-element styles. */
+  .calendly-container iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  }
+  .calendly-container iframe::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  .calendly-container iframe::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+    border-radius: 999px;
+  }
+  .calendly-container iframe::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  .calendly-container iframe::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+  }
+
+  /* Dark-mode: remove extra margins/padding around Calendly widget */
+  .dark .calendly-container {
+    padding: 0 !important;
+    background: transparent !important;
+    border-color: transparent !important;
+    border-radius: 0.5rem;
+  }
+
+  .dark .calendly-container .calendly-inline-widget,
+  .dark .calendly-container .calendly-inline-widget iframe {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: inherit !important;
+    border-radius: 0 !important;
   }
 }
 

@@ -8,7 +8,8 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "audit:lighthouse": "npx lighthouse http://localhost:5173 --output html --output-path ./lighthouse-report.html --quiet --chrome-flags='--headless'"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

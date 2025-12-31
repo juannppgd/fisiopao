@@ -149,7 +149,7 @@ export const About = () => {
                 key={index}
                 className="group p-6 bg-card rounded-2xl border border-border hover:border-primary/30 hover:shadow-card transition-all duration-300 text-center card-hover"
               >
-                <div className="w-14 h-14 mx-auto mb-4 bg-primary/10 rounded-2xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                <div className="w-14 h-14 mx-auto mb-4 bg-primary/10 rounded-2xl flex items-center justify-center group-hover:bg-primary-light transition-colors">
                   <item.icon className="w-7 h-7 text-primary" />
                 </div>
                 <h4 className="font-semibold text-foreground mb-2">{item.title}</h4>
