@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
 // https://vitejs.dev/config/
-const base = process.env.NODE_ENV === 'production' ? '/fisiopao/' : '/';
+const base = '/fisiopao/';
 
 export default defineConfig(({ mode }) => ({
   base,

@@ -1,51 +1,9 @@
-name: Deploy to GitHub Pages
+# Disabled: duplicate deploy workflow
+# This workflow used peaceiris/actions-gh-pages and is disabled because the repo is using the official Pages actions workflow (`.github/workflows/deploy-pages.yml`).
+# If needed in the future, re-enable triggers and review permissions.
+name: Deploy to gh-pages (disabled)
 
-on:
-  push:
-    branches: [ main ]
+on: []
 
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Use Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build
-        run: npm run build
-
-      - name: Show build output (diagnostic)
-        run: |
-          echo "Dist contents:"
-          ls -la ./dist || true
-          echo "PWD: $(pwd)"
-          echo "Node:" && node -v || true
-          echo "NPM:" && npm -v || true
-
-      - name: Configure Pages
-        uses: actions/configure-pages@v3
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./dist
-
-  deploy:
-    needs: build-and-deploy
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to Pages
-        uses: actions/deploy-pages@v1
+# Note: the original content was removed to avoid duplicate deployments.
+# Keep this file for reference or remove it entirely if you prefer.
