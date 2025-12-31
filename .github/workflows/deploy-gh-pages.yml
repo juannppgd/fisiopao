@@ -1,32 +1,9 @@
-name: Build and deploy to gh-pages
+# Disabled: duplicate deploy workflow
+# This workflow used peaceiris/actions-gh-pages and is disabled because the repo is using the official Pages actions workflow (`.github/workflows/deploy-pages.yml`).
+# If needed in the future, re-enable triggers and review permissions.
+name: Deploy to gh-pages (disabled)
 
-on:
-  push:
-    branches: [ main ]
+on: []
 
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build
-        run: npm run build
-
-      - name: Deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          publish_dir: ./dist
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          # optional: set user name/email
-          # commit_message: Deploy to gh-pages (by GitHub Actions)
+# Note: the original content was removed to avoid duplicate deployments.
+# Keep this file for reference or remove it entirely if you prefer.

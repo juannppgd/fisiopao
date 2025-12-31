@@ -27,6 +27,14 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Show build output (diagnostic)
+        run: |
+          echo "Dist contents:"
+          ls -la ./dist || true
+          echo "PWD: $(pwd)"
+          echo "Node:" && node -v || true
+          echo "NPM:" && npm -v || true
+
       - name: Configure Pages
         uses: actions/configure-pages@v3
 
