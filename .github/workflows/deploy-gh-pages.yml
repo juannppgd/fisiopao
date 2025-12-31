@@ -1,9 +1,0 @@
-# Disabled: duplicate deploy workflow
-# This workflow used peaceiris/actions-gh-pages and is disabled because the repo is using the official Pages actions workflow (`.github/workflows/deploy-pages.yml`).
-# If needed in the future, re-enable triggers and review permissions.
-name: Deploy to gh-pages (disabled)
-
-on: []
-
-# Note: the original content was removed to avoid duplicate deployments.
-# Keep this file for reference or remove it entirely if you prefer.
