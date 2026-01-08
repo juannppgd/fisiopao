@@ -2,15 +2,24 @@ import { Calendar, Clock, CheckCircle } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 
+declare global {
+  interface Window {
+    Calendly: {
+      initPopupWidget: (options: { url: string }) => void;
+      initInlineWidget: (options: { url: string; parentElement: HTMLElement }) => void;
+    };
+  }
+}
+
 export const Appointment = () => {
   const CALENDLY_URL = "https://calendly.com/fisiopaotfi?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAb21jcAPCZYZzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAadJ6y_pyO_hnyQy0IoDQhs9quxT9LDioZ6B26r0PKfzymcN3DsYBf7nfKBzeA&brid=FmucpLLlLi5Gpaj4q-9REw";
 
   const loadCalendly = () => {
     return new Promise<void>((resolve, reject) => {
-      if ((window as any).Calendly) return resolve();
+      if (window.Calendly) return resolve();
       if (document.getElementById("calendly-widget-script")) {
         const interval = setInterval(() => {
-          if ((window as any).Calendly) {
+          if (window.Calendly) {
             clearInterval(interval);
             resolve();
           }
@@ -43,7 +52,7 @@ export const Appointment = () => {
   const openCalendlyPopup = async () => {
     try {
       await loadCalendly();
-      (window as any).Calendly.initPopupWidget({ url: CALENDLY_URL });
+      window.Calendly.initPopupWidget({ url: CALENDLY_URL });
     } catch (e) {
       window.open(CALENDLY_URL, "_blank", "noopener,noreferrer");
     }
@@ -55,7 +64,7 @@ export const Appointment = () => {
     let mounted = true;
     loadCalendly()
       .then(() => {
-        if (!mounted || !calendlyRef.current || !(window as any).Calendly) return;
+        if (!mounted || !calendlyRef.current || !window.Calendly) return;
 
         const parent = calendlyRef.current;
 
@@ -66,7 +75,7 @@ export const Appointment = () => {
         const existingIframes = parent.querySelectorAll('iframe');
         existingIframes.forEach((el) => el.remove());
 
-        (window as any).Calendly.initInlineWidget({
+        window.Calendly.initInlineWidget({
           url: CALENDLY_URL,
           parentElement: parent,
         });
@@ -156,8 +165,7 @@ export const Appointment = () => {
               <div className="flex items-center gap-3 p-4 bg-card rounded-xl border border-border mb-6">
                 <Clock className="w-6 h-6 text-primary" />
                 <div>
-                  <p className="font-medium text-foreground">Duración: 60 minutos</p>
-                  <p className="text-sm text-muted-foreground">Sesión completa de valoración</p>
+                  <p className="font-medium text-foreground">Sesión completa de valoración</p>
                 </div>
               </div>
 

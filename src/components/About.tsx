@@ -81,7 +81,7 @@ export const About = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
             </div>
             {/* Floating Badge */}
-            <div className="absolute -bottom-6 -right-6 md:right-8 bg-card p-6 rounded-2xl shadow-elevated border border-border">
+            <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-card p-6 rounded-2xl shadow-elevated border border-border">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
                   <GraduationCap className="w-6 h-6 text-primary" />
