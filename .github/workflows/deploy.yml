@@ -37,8 +37,11 @@ jobs:
           path: ./dist
 
       - name: Sync dist to docs and commit
+        env:
+          REPO: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          set -e
+          set -euo pipefail
           if [ -d docs ]; then rm -rf docs; fi
           mkdir docs
           cp -r dist/* docs/
@@ -49,6 +52,7 @@ jobs:
             echo "No changes to docs"
           else
             git commit -m "chore(pages): update docs from CI [skip ci]"
+            git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git
             git push origin HEAD:main
           fi
 
