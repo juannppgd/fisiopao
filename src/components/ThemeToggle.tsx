@@ -34,6 +34,8 @@ export const ThemeToggle = () => {
     setIsDark(nowDark);
     try {
       localStorage.setItem("theme", nowDark ? "dark" : "light");
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute("content", nowDark ? "#0B1E2D" : "#22b8a0");
     } catch (e) {
       // ignore storage errors
     }
@@ -47,7 +49,7 @@ export const ThemeToggle = () => {
       variant="ghost"
       size="sm"
       onClick={toggle}
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      aria-label={isDark ? "Modo claro" : "Modo oscuro"}
       className="px-2 py-2"
     >
       {isDark ? <Sun className="w-4 h-4 text-accent-foreground" /> : <Moon className="w-4 h-4 text-primary" />}

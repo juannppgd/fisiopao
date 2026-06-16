@@ -14,7 +14,7 @@ declare global {
 export const Appointment = () => {
   const CALENDLY_URL = "https://calendly.com/fisiopaotfi?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAb21jcAPCZYZzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAadJ6y_pyO_hnyQy0IoDQhs9quxT9LDioZ6B26r0PKfzymcN3DsYBf7nfKBzeA&brid=FmucpLLlLi5Gpaj4q-9REw";
 
-  const loadCalendly = () => {
+  const loadCalendly = (): Promise<void> => {
     return new Promise<void>((resolve, reject) => {
       if (window.Calendly) return resolve();
       if (document.getElementById("calendly-widget-script")) {
@@ -58,61 +58,70 @@ export const Appointment = () => {
     }
   };
 
+  const sectionRef = useRef<HTMLElement | null>(null);
   const calendlyRef = useRef<HTMLDivElement | null>(null);
+  const loadedRef = useRef(false);
 
   useEffect(() => {
-    let mounted = true;
-    loadCalendly()
-      .then(() => {
-        if (!mounted || !calendlyRef.current || !window.Calendly) return;
+    const section = sectionRef.current;
+    if (!section || loadedRef.current) return;
 
-        const parent = calendlyRef.current;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !loadedRef.current) {
+          loadedRef.current = true;
+          observer.disconnect();
 
-        // Prevent double initialization (React StrictMode or repeated effect runs)
-        if (parent.dataset.calendlyInitialized === 'true') return;
+          loadCalendly()
+            .then(() => {
+              if (!calendlyRef.current || !window.Calendly) return;
 
-        // Remove any existing iframes to avoid duplicates
-        const existingIframes = parent.querySelectorAll('iframe');
-        existingIframes.forEach((el) => el.remove());
+              const parent = calendlyRef.current;
+              if (parent.dataset.calendlyInitialized === 'true') return;
 
-        window.Calendly.initInlineWidget({
-          url: CALENDLY_URL,
-          parentElement: parent,
-        });
+              const existingIframes = parent.querySelectorAll('iframe');
+              existingIframes.forEach((el) => el.remove());
 
-        parent.dataset.calendlyInitialized = 'true';
+              window.Calendly.initInlineWidget({
+                url: CALENDLY_URL,
+                parentElement: parent,
+              });
 
-        // ensure embedded iframe fills the responsive container
-        setTimeout(() => {
-          try {
-            const iframe = parent.querySelector('iframe') as HTMLIFrameElement | null;
-            if (iframe) {
-              iframe.style.width = '100%';
-              iframe.style.height = '100%';
-              iframe.style.minHeight = '60vh';
-              iframe.style.maxHeight = '80vh';
-              iframe.style.display = 'block';
-            }
-          } catch (err) {
-            /* ignore */
-          }
-        }, 300);
-      })
-      .catch(() => {
-        /* ignore */
-      });
+              parent.dataset.calendlyInitialized = 'true';
 
-    return () => {
-      mounted = false;
-    };
+              setTimeout(() => {
+                try {
+                  const iframe = parent.querySelector('iframe') as HTMLIFrameElement | null;
+                  if (iframe) {
+                    iframe.style.width = '100%';
+                    iframe.style.height = '100%';
+                    iframe.style.minHeight = '60vh';
+                    iframe.style.maxHeight = '80vh';
+                    iframe.style.display = 'block';
+                  }
+                } catch (err) {
+                  /* ignore */
+                }
+              }, 300);
+            })
+            .catch(() => {
+              /* ignore */
+            });
+        }
+      },
+      { rootMargin: "200px 0px" }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <section id="agendamiento" className="section-padding bg-background">
+    <section id="agendamiento" ref={sectionRef} className="section-padding bg-background">
       <div className="container-custom">
         <div className="max-w-4xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-full mb-4">
               Reserva tu cita
             </span>
@@ -180,13 +189,20 @@ export const Appointment = () => {
                 </div>
               </div>
 
-              <div className="mt-6">
-                <p className="text-sm text-muted-foreground mb-3">¿Prefieres agendar por WhatsApp? Puedes hacerlo directamente desde aquí:</p>
-                <Button variant="default" size="lg" className="w-full" asChild>
-                  <a href="https://wa.me/573133035084?text=Hola%20Fisiopao,%20me%20gustaría%20agendar%20mi%20cita%20de%20valoración" target="_blank" rel="noopener noreferrer" aria-label="Asesoría personalizada por WhatsApp">
-                    Asesoría personalizada
-                  </a>
-                </Button>
+              <div className="mt-6 space-y-3">
+                <p className="text-sm text-muted-foreground">¿Prefieres agendar sin el calendario? Contáctame directamente:</p>
+                <div className="grid grid-cols-2 gap-3">
+                  <Button variant="default" size="lg" asChild>
+                    <a href="https://wa.me/573133035084?text=Hola%20Fisiopao,%20me%20gustaría%20agendar%20mi%20cita%20de%20valoración" target="_blank" rel="noopener noreferrer" aria-label="Agendar por WhatsApp">
+                      WhatsApp
+                    </a>
+                  </Button>
+                  <Button variant="outline" size="lg" asChild>
+                    <a href="mailto:fisiopaotfi@gmail.com?subject=Agendar%20cita%20de%20valoración" aria-label="Agendar por correo electrónico">
+                      Correo electrónico
+                    </a>
+                  </Button>
+                </div>
               </div>
             </div>
           </div>

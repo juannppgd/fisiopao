@@ -25,7 +25,7 @@ export const Services = () => {
     <section id="servicios" className="section-padding bg-background">
       <div className="container-custom">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-full mb-4">
             Servicios profesionales
           </span>
@@ -38,7 +38,7 @@ export const Services = () => {
         </div>
 
         {/* Presencial Services */}
-        <div className="mb-16">
+        <div className="mb-10">
           <div className="flex items-center gap-3 mb-8">
             <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
               <MapPin className="w-6 h-6 text-primary" />

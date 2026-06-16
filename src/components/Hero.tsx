@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Calendar, MessageCircle, ChevronDown } from "lucide-react";
 import heroImage from "@/assets/hero-physiotherapy.jpg";
+import heroImageWebP from "@/assets/hero-physiotherapy.webp";
 
 export const Hero = () => {
   const scrollToSection = (href: string) => {
@@ -17,14 +18,20 @@ export const Hero = () => {
     >
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <img
-          src={heroImage}
-          alt="Fisioterapia domiciliaria profesional en Tunja"
-          className="w-full h-full object-cover"
-          loading="eager"
-          decoding="async"
-          fetchPriority="high"
-        />
+        <picture>
+          <source srcSet={heroImageWebP} type="image/webp" />
+          <source srcSet={heroImage} type="image/jpeg" />
+          <img
+            src={heroImage}
+            alt="Fisioterapia domiciliaria profesional en Tunja"
+            className="w-full h-full object-cover"
+            width="1920"
+            height="1080"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+          />
+        </picture>
         <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/40" />
       </div>
 
@@ -47,7 +54,7 @@ export const Hero = () => {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-10 max-w-2xl animate-fade-up animation-delay-200">
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-6 max-w-2xl animate-fade-up animation-delay-200">
             Cuidamos tu salud con atención fisioterapéutica personalizada en
             casa, adaptada a cada etapa de la vida y a cada necesidad. Más de 4
             años transformando vidas en Tunja, Boyacá.
@@ -82,7 +89,7 @@ export const Hero = () => {
           </div>
 
           {/* Trust Indicators */}
-          <div className="flex flex-wrap items-center gap-6 mt-12 pt-8 border-t border-border/50 animate-fade-up animation-delay-400">
+          <div className="flex flex-wrap items-center gap-6 mt-8 pt-6 border-t border-border/50 animate-fade-up animation-delay-400">
             <div className="flex items-center gap-2">
               <span className="text-3xl font-bold text-primary">4+</span>
               <span className="text-sm text-muted-foreground">
@@ -112,7 +119,7 @@ export const Hero = () => {
         <button
           onClick={() => scrollToSection("#sobre-mi")}
           className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
-          aria-label="Scroll to next section"
+          aria-label="Ir a la siguiente sección"
         >
           <span className="text-xs font-medium">Conoce más</span>
           <ChevronDown className="w-5 h-5" />

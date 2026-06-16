@@ -1,14 +1,16 @@
+import { lazy, Suspense } from "react";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { Services } from "@/components/Services";
 import { Pathologies } from "@/components/Pathologies";
-import { FAQ } from "@/components/FAQ";
-import { Reviews } from "@/components/Reviews";
-import { Appointment } from "@/components/Appointment";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { Helmet } from "react-helmet-async";
+
+const FAQ = lazy(() => import("@/components/FAQ").then((m) => ({ default: m.FAQ })));
+const Reviews = lazy(() => import("@/components/Reviews").then((m) => ({ default: m.Reviews })));
+const Appointment = lazy(() => import("@/components/Appointment").then((m) => ({ default: m.Appointment })));
 
 const Index = () => {
   return (
@@ -32,12 +34,25 @@ const Index = () => {
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="es_CO" />
         <meta property="og:url" content="https://fisiopao.com" />
-        <meta property="og:image" content="https://fisiopao.com/og-image-fisiopao.svg" />
+        <meta property="og:image" content="https://fisiopao.com/og-image-fisiopao.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="Fisiopao - Fisioterapia domiciliaria en Tunja" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content="https://fisiopao.com/og-image-fisiopao.svg" />
+        <meta name="twitter:image" content="https://fisiopao.com/og-image-fisiopao.png" />
         <link rel="canonical" href="https://fisiopao.com" />
         <link rel="alternate" href="https://fisiopao.com/" hrefLang="es-CO" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://fisiopao.com/" },
+              { "@type": "ListItem", "position": 2, "name": "Servicios", "item": "https://fisiopao.com/#servicios" },
+              { "@type": "ListItem", "position": 3, "name": "Contacto", "item": "https://fisiopao.com/#contacto" },
+            ],
+          })}
+        </script>
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -76,15 +91,27 @@ const Index = () => {
       </Helmet>
 
       <div className="min-h-screen bg-background font-body">
+        <a
+          href="#main-content"
+          className="skip-to-content"
+        >
+          Saltar al contenido
+        </a>
         <Header />
-        <main>
+        <main id="main-content">
           <Hero />
           <About />
           <Services />
           <Pathologies />
-          <FAQ />
-          <Reviews />
-          <Appointment />
+          <Suspense fallback={<div className="section-padding bg-background"><div className="container-custom text-center text-muted-foreground">Cargando...</div></div>}>
+            <FAQ />
+          </Suspense>
+          <Suspense fallback={<div className="section-padding bg-muted/30"><div className="container-custom text-center text-muted-foreground">Cargando...</div></div>}>
+            <Reviews />
+          </Suspense>
+          <Suspense fallback={<div className="section-padding bg-background"><div className="container-custom text-center text-muted-foreground">Cargando...</div></div>}>
+            <Appointment />
+          </Suspense>
         </main>
         <Footer />
         <WhatsAppButton />

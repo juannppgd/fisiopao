@@ -11,7 +11,7 @@ export const WhatsAppButton = () => {
     >
       <div className="relative">
         {/* Pulse Animation */}
-        <div className="absolute inset-0 bg-[hsl(142,70%,45%)] rounded-full animate-ping opacity-30" />
+        <div className="absolute inset-0 bg-[hsl(142,70%,45%)] rounded-full motion-safe:animate-ping opacity-30" />
         
         {/* Button */}
         <div className="relative w-14 h-14 md:w-16 md:h-16 bg-[hsl(142,70%,45%)] hover:bg-[hsl(142,70%,40%)] rounded-full flex items-center justify-center shadow-elevated hover:shadow-xl hover:scale-110 transition-all duration-300">

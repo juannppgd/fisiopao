@@ -16,6 +16,7 @@ const navItems = [
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("#inicio");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +24,34 @@ export const Header = () => {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const sectionIds = navItems.map((item) => item.href);
+    const observers: IntersectionObserver[] = [];
+
+    sectionIds.forEach((id) => {
+      const element = document.querySelector(id);
+      if (!element) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveSection(id);
+            }
+          });
+        },
+        { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+      );
+
+      observer.observe(element);
+      observers.push(observer);
+    });
+
+    return () => {
+      observers.forEach((observer) => observer.disconnect());
+    };
   }, []);
 
   const scrollToSection = (href: string) => {
@@ -64,7 +93,8 @@ export const Header = () => {
                 e.preventDefault();
                 scrollToSection(item.href);
               }}
-              className="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-black transition-colors rounded-lg hover:[text-shadow:0_0_4px_rgba(0,0,0,0.15)] dark:hover:text-white dark:hover:[text-shadow:0_0_6px_rgba(255,255,255,0.75)]"
+              className="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-black transition-colors rounded-lg hover:[text-shadow:var(--glow-header)] dark:hover:text-white dark:hover:[text-shadow:var(--glow-header)]"
+              aria-current={activeSection === item.href ? "section" : undefined}
             >
               {item.label}
             </a>
@@ -89,7 +119,7 @@ export const Header = () => {
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="group lg:hidden p-2 rounded-lg transition-colors dark:group-hover:text-white"
-          aria-label="Toggle menu"
+          aria-label="Abrir menú"
         >
           {isMobileMenuOpen ? (
             <X className="w-6 h-6 text-foreground group-hover:text-white dark:group-hover:text-white" />
@@ -103,19 +133,20 @@ export const Header = () => {
       {isMobileMenuOpen && (
         <div className="lg:hidden absolute top-full left-0 right-0 bg-background border-b border-border shadow-elevated animate-fade-in">
           <nav className="flex flex-col p-4">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(item.href);
-                }}
-                className="px-4 py-3 text-base font-medium text-foreground/80 hover:text-black transition-colors rounded-lg hover:[text-shadow:0_0_4px_rgba(0,0,0,0.15)] dark:hover:text-white dark:hover:[text-shadow:0_0_6px_rgba(255,255,255,0.75)]"
-              >
-                {item.label}
-              </a>
-            ))}
+              {navItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(item.href);
+                  }}
+                  className="px-4 py-3 text-base font-medium text-foreground/80 hover:text-black transition-colors rounded-lg hover:[text-shadow:var(--glow-header)] dark:hover:text-white dark:hover:[text-shadow:var(--glow-header)]"
+                  aria-current={activeSection === item.href ? "section" : undefined}
+                >
+                  {item.label}
+                </a>
+              ))}
             <ThemeToggle />
             <Button
               variant="hero"

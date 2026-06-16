@@ -54,7 +54,7 @@ export const FAQ = () => {
       <div className="container-custom">
         <div className="max-w-4xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-full mb-4">
               Resolvemos tus dudas
             </span>
@@ -85,7 +85,7 @@ export const FAQ = () => {
           </Accordion>
 
           {/* Additional Help */}
-          <div className="text-center mt-12 p-8 bg-muted/50 rounded-2xl border border-border">
+          <div className="text-center mt-8 p-6 bg-muted/50 rounded-2xl border border-border">
             <p className="text-foreground font-medium mb-2">
               ¿Tienes más preguntas?
             </p>

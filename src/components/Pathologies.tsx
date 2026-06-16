@@ -52,7 +52,7 @@ export const Pathologies = () => {
     <section id="patologias" className="section-padding bg-muted/30">
       <div className="container-custom">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-full mb-4">
             Áreas de especialización
           </span>
@@ -126,7 +126,7 @@ export const Pathologies = () => {
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-8">
           <p className="text-muted-foreground mb-4">
             ¿No encuentras tu condición? Contáctame para una valoración personalizada.
           </p>

@@ -61,6 +61,11 @@
     --sidebar-border: 212 10% 95%;
     --sidebar-ring: 212 75% 35%;
 
+    /* Glow effects for hover states */
+    --glow-header: 0 0 4px hsl(0 0% 0% / 0.15);
+    --glow-footer: 0 0 8px hsl(0 0% 100% / 0.9);
+    --glow-footer-subtle: 0 0 4px hsl(0 0% 100% / 0.6);
+
     /* Scrollbar tokens (used for embedded widgets like Calendly) */
     --scrollbar-track: hsl(var(--muted));
     --scrollbar-thumb: hsl(var(--primary));
@@ -69,6 +74,10 @@
 
   .dark {
     /* “Usar la paleta cromática basada en el logo de Fisiopao. Mantener coherencia entre modo claro y oscuro, respetando tonos azul clínico, verde–azulado y acento aguamarina. Priorizar legibilidad, contraste AA/AAA y estética médica profesional.” */
+
+    --glow-header: 0 0 6px hsl(0 0% 100% / 0.75);
+    --glow-footer: 0 0 10px hsl(0 0% 100% / 0.95);
+    --glow-footer-subtle: 0 0 6px hsl(0 0% 100% / 0.75);
 
     --scrollbar-track: hsl(var(--card));
     --scrollbar-thumb: hsl(var(--primary));
@@ -144,7 +153,7 @@
 
 @layer components {
   .section-padding {
-    @apply py-16 md:py-24 px-4 md:px-8;
+    @apply py-10 md:py-16 px-4 md:px-8;
   }
 
   .container-custom {
@@ -244,24 +253,38 @@
 }
 
 @layer utilities {
-  .animate-fade-up {
-    animation: fadeUp 0.6s ease-out forwards;
-    opacity: 0;
+  .skip-to-content {
+    @apply fixed top-0 left-0 z-[100] -translate-y-full focus:translate-y-0 focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-lg focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+    transition: transform 0.2s ease;
   }
 
-  .animate-fade-in {
-    animation: fadeIn 0.5s ease-out forwards;
-    opacity: 0;
-  }
-
-  .animate-slide-in-right {
-    animation: slideInRight 0.5s ease-out forwards;
-    opacity: 0;
-  }
-
+  .animate-fade-up,
+  .animate-fade-in,
+  .animate-slide-in-right,
   .animate-scale-in {
-    animation: scaleIn 0.4s ease-out forwards;
-    opacity: 0;
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .animate-fade-up {
+      animation: fadeUp 0.6s ease-out forwards;
+      opacity: 0;
+    }
+
+    .animate-fade-in {
+      animation: fadeIn 0.5s ease-out forwards;
+      opacity: 0;
+    }
+
+    .animate-slide-in-right {
+      animation: slideInRight 0.5s ease-out forwards;
+      opacity: 0;
+    }
+
+    .animate-scale-in {
+      animation: scaleIn 0.4s ease-out forwards;
+      opacity: 0;
+    }
   }
 
   .animation-delay-100 { animation-delay: 0.1s; }
@@ -315,15 +338,12 @@
   50% { transform: translateY(-10px); }
 }
 
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
+@media (prefers-reduced-motion: no-preference) {
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
 
-@keyframes pulse-soft {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
-}
-
-.animate-pulse-soft {
-  animation: pulse-soft 2s ease-in-out infinite;
+  .animate-pulse-soft {
+    animation: pulse-soft 2s ease-in-out infinite;
+  }
 }

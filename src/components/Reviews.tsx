@@ -32,7 +32,7 @@ export const Reviews = () => {
     <section id="resenas" className="section-padding bg-muted/30">
       <div className="container-custom">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-full mb-4">
             Testimonios reales
           </span>
@@ -88,7 +88,7 @@ export const Reviews = () => {
         </div>
 
         {/* Social Proof */}
-        <div className="flex flex-wrap justify-center items-center gap-8 mt-12 pt-8 border-t border-border">
+        <div className="flex flex-wrap justify-center items-center gap-6 mt-8 pt-6 border-t border-border">
           <div className="flex items-center gap-2">
             <div className="flex -space-x-2">
               {['M', 'C', 'A', 'P'].map((letter, i) => (

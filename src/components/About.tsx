@@ -1,5 +1,6 @@
 import { GraduationCap, Award, Heart, Home, UserCheck, Star } from "lucide-react";
 import portraitImage from "@/assets/fisiopao-portrait.jpg";
+import portraitImageWebP from "@/assets/fisiopao-portrait.webp";
 
 const certifications = [
   {
@@ -57,7 +58,7 @@ export const About = () => {
     <section id="sobre-mi" className="section-padding bg-muted/30">
       <div className="container-custom">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-full mb-4">
             Conoce a tu fisioterapeuta
           </span>
@@ -69,15 +70,21 @@ export const About = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12">
           {/* Image */}
           <div className="relative animate-fade-up">
             <div className="relative rounded-2xl overflow-hidden shadow-elevated">
-              <img
-                src={portraitImage}
-                alt="Fisiopao - Fisioterapeuta profesional en Tunja"
-                className="w-full aspect-[3/4] object-cover"
-              />
+              <picture>
+                <source srcSet={portraitImageWebP} type="image/webp" />
+                <source srcSet={portraitImage} type="image/jpeg" />
+                <img
+                  src={portraitImage}
+                  alt="Fisiopao - Fisioterapeuta profesional en Tunja"
+                  className="w-full aspect-[3/4] object-cover"
+                  width="1600"
+                  height="1600"
+                />
+              </picture>
               <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
             </div>
             {/* Floating Badge */}
@@ -140,7 +147,7 @@ export const About = () => {
 
         {/* Why Choose Me */}
         <div className="animate-fade-up animation-delay-300">
-          <h3 className="font-heading text-2xl md:text-3xl font-bold text-foreground text-center mb-12">
+          <h3 className="font-heading text-2xl md:text-3xl font-bold text-foreground text-center mb-8">
             ¿Por qué elegirme?
           </h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">

@@ -31,7 +31,7 @@ export const Footer = () => {
       {/* Main Footer */}
       <div className="section-padding pb-8">
         <div className="container-custom">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {/* Brand */}
             <div className="lg:col-span-2">
               <a href="#inicio" className="inline-block mb-6">
@@ -76,7 +76,7 @@ export const Footer = () => {
                 <li>
                   <a
                     href="mailto:fisiopaotfi@gmail.com"
-                    className="flex items-start gap-3 text-background/80 dark:text-foreground/80 hover:text-white transition-colors hover:[text-shadow:0_0_8px_rgba(255,255,255,0.9)] dark:hover:text-white dark:hover:[text-shadow:0_0_10px_rgba(255,255,255,0.95)]"
+                    className="flex items-start gap-3 text-background/80 dark:text-foreground/80 hover:text-white transition-colors hover:[text-shadow:var(--glow-footer)] dark:hover:text-white dark:hover:[text-shadow:var(--glow-footer)]"
                   >
                     <Mail className="w-5 h-5 mt-0.5 flex-shrink-0" />
                     <span>fisiopaotfi@gmail.com</span>
@@ -85,7 +85,7 @@ export const Footer = () => {
                 <li>
                   <a
                     href="tel:+573133035084"
-                    className="flex items-start gap-3 text-background/80 dark:text-foreground/80 hover:text-white transition-colors hover:[text-shadow:0_0_8px_rgba(255,255,255,0.9)] dark:hover:text-white dark:hover:[text-shadow:0_0_10px_rgba(255,255,255,0.95)]"
+                    className="flex items-start gap-3 text-background/80 dark:text-foreground/80 hover:text-white transition-colors hover:[text-shadow:var(--glow-footer)] dark:hover:text-white dark:hover:[text-shadow:var(--glow-footer)]"
                   >
                     <Phone className="w-5 h-5 mt-0.5 flex-shrink-0" />
                     <span>+57 313 303 5084</span>
@@ -128,32 +128,26 @@ export const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 w-full">
               <div className="w-full md:w-auto">
-                <p className="text-sm text-background/60 dark:text-foreground/60">
+                <p className="text-sm text-background/75 dark:text-foreground/75">
                   © {currentYear} Juan Pablo Gutiérrez Díaz. Todos los derechos reservados.
                 </p>
-                <div className="mt-2 text-sm text-background/60 dark:text-foreground/60 space-y-1">
+                <div className="mt-2 text-sm text-background/75 dark:text-foreground/75 space-y-1">
                   <p>
                     Diseñado y desarrollado por <strong>Juan Pablo Gutiérrez Díaz</strong>, especialista en desarrollo web y marketing digital, creando experiencias digitales ágiles y orientadas a resultados.
                   </p>
                   <p>
-                    ¿Quieres saber más o agendar una asesoría? Escríbeme a <a href="mailto:contact.juannppgd@gmail.com" className="underline hover:text-white transition-colors hover:[text-shadow:0_0_4px_rgba(255,255,255,0.6)] dark:hover:text-white dark:hover:[text-shadow:0_0_6px_rgba(255,255,255,0.75)]">contact.juannppgd@gmail.com</a> o visita mi sitio web: <a href="https://juanpablogutierrez.space/" target="_blank" rel="noopener noreferrer" className="underline hover:text-white transition-colors hover:[text-shadow:0_0_4px_rgba(255,255,255,0.6)] dark:hover:text-white dark:hover:[text-shadow:0_0_6px_rgba(255,255,255,0.75)]">www.juanpablogutierrez.space</a>
+                    ¿Quieres saber más o agendar una asesoría? Escríbeme a <a href="mailto:contact.juannppgd@gmail.com" className="underline hover:text-white transition-colors hover:[text-shadow:var(--glow-footer-subtle)] dark:hover:text-white dark:hover:[text-shadow:var(--glow-footer-subtle)]">contact.juannppgd@gmail.com</a> o visita mi sitio web: <a href="https://juanpablogd.com" target="_blank" rel="noopener noreferrer nofollow" className="underline hover:text-white transition-colors hover:[text-shadow:var(--glow-footer-subtle)] dark:hover:text-white dark:hover:[text-shadow:var(--glow-footer-subtle)]">www.juanpablogd.com</a>
                   </p>
                 </div>
               </div>
 
               <div className="flex items-center gap-6 text-sm">
-                <a
-                  href="#"
-                  className="text-background/60 dark:text-foreground/60 hover:text-white transition-colors hover:[text-shadow:0_0_4px_rgba(255,255,255,0.6)] dark:hover:text-white dark:hover:[text-shadow:0_0_6px_rgba(255,255,255,0.75)]"
-                >
+                <span className="text-background/75 dark:text-foreground/75">
                   Política de privacidad
-                </a>
-                <a
-                  href="#"
-                  className="text-background/60 dark:text-foreground/60 hover:text-white transition-colors hover:[text-shadow:0_0_4px_rgba(255,255,255,0.6)] dark:hover:text-white dark:hover:[text-shadow:0_0_6px_rgba(255,255,255,0.75)]"
-                >
+                </span>
+                <span className="text-background/75 dark:text-foreground/75">
                   Protección de datos
-                </a>
+                </span>
               </div>
             </div>
           </div>
